@@ -9,7 +9,7 @@ Sugerimos o uso das seguintes ferramentas acessíveis: [FullCalendar](https://fu
 
 ## Informações do trabalho
 
-- Nome:
+- Nome: Pedro Nunes Cruz
 - Matricula:
 - Proposta de projeto escolhida:
 - Breve descrição sobre seu projeto:
