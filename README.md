@@ -9,15 +9,15 @@ Sugerimos o uso das seguintes ferramentas acessíveis: [FullCalendar](https://fu
 
 ## Informações do trabalho
 
-- Nome:
-- Matricula:
-- Proposta de projeto escolhida:
-- Breve descrição sobre seu projeto:
+- Nome: Pedro Nunes Cruz
+- Matricula: 890508
+- Proposta de projeto escolhida: Portal de notícias
+- Breve descrição sobre seu projeto: Portal de notícias interativo com possibildiade de adcionar novas noticias e analisar o gráfico
 
 **Print da tela com a implementação**
 
-<< Coloque aqui uma breve explicação da implementação feita nessa etapa>>
+Primeiro o print com apenas uma noticias com tema Tecnologia, depois adicionei outra noticia com esse tema o grafico sobe junto.
 
-<<  COLOQUE A IMAGEM TELA 1 AQUI >>
+![alt text](<antes de adicionar.jpg>)
 
-<<  COLOQUE A IMAGEM TELA 2 AQUI >>
+![alt text](<depois de adicionar.jpg>)

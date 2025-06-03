@@ -146,12 +146,12 @@ const dados = {
   ]
 };
 
-const container = document.querySelector('.cards-container');
+const container = document.querySelector('.row.row-cols-1.row-cols-md-3.g-4');
 
 fetch("http://localhost:3000/noticias")
   .then(response => response.json())
   .then(noticias => {
-    // Renderizar os cards
+    
     noticias.forEach(noticia => {
       const card = document.createElement('div');
       card.className = 'col';
@@ -168,7 +168,7 @@ fetch("http://localhost:3000/noticias")
       container.appendChild(card);
     });
 
-    // Preparar dados para gráfico
+    
     const categorias = {};
     noticias.forEach(noticia => {
       categorias[noticia.categoria] = (categorias[noticia.categoria] || 0) + 1;
@@ -177,7 +177,7 @@ fetch("http://localhost:3000/noticias")
     const labels = Object.keys(categorias);
     const dados = Object.values(categorias);
 
-    // Verificar se o canvas do gráfico existe
+    
     const ctx = document.getElementById('graficoCategorias');
     if (ctx) {
       new Chart(ctx.getContext('2d'), {
