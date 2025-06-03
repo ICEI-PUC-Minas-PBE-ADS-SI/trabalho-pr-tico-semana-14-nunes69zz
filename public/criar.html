@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Notícia</title>
+    <link rel="stylesheet" href="assets/css/style.CSS">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Adicionar Nova Notícia</h2>
+        <form id="formNoticia">
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título</label>
+                <input type="text" class="form-control" id="titulo" required>
+            </div>
+            <div class="mb-3">
+                <label for="descricao" class="form-label">Descrição</label>
+                <textarea class="form-control" id="descricao" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="imagem" class="form-label">URL da Imagem Principal</label>
+                <input type="text" class="form-control" id="imagem" required>
+            </div>
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Tema/Categoria</label>
+                <input type="text" class="form-control" id="categoria">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Imagens Complementares</label>
+                <div id="imagens-complementares-list"></div>
+                <input type="text" class="form-control mb-2" id="imagem-complementar-url" placeholder="URL da imagem">
+                <input type="text" class="form-control mb-2" id="imagem-complementar-desc" placeholder="Descrição da imagem">
+                <button type="button" class="btn btn-secondary mb-2" id="adicionar-imagem">Adicionar Imagem</button>
+            </div>
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('formNoticia').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const titulo = document.getElementById('titulo').value;
+            const descricao = document.getElementById('descricao').value;
+            const imagem = document.getElementById('imagem').value;
+            const categoria = document.getElementById('categoria').value;
+
+            let noticiasExtras = [];
+            if (localStorage.getItem('noticiasExtras')) {
+                noticiasExtras = JSON.parse(localStorage.getItem('noticiasExtras'));
+            }
+
+            
+            const id = Date.now();
+
+            noticiasExtras.push({
+                id,
+                titulo,
+                descricao,
+                imagem_pincipal: imagem,
+                categoria
+            });
+
+            localStorage.setItem('noticiasExtras', JSON.stringify(noticiasExtras));
+            alert('Notícia adicionada com sucesso!');
+            window.location.href = 'index.html';
+        });
+
+        document.getElementById('adicionar-imagem').addEventListener('click', function() {
+            const url = document.getElementById('imagem-complementar-url').value;
+            const desc = document.getElementById('imagem-complementar-desc').value;
+            if (!url || !desc) {
+                alert('Por favor, preencha a URL e a descrição da imagem complementar.');
+                return;
+            }
+
+            const div = document.createElement('div');
+            div.classList.add('imagem-complementar');
+            div.innerHTML = `
+                <input type="text" class="form-control mb-2" value="${url}" readonly>
+                <input type="text" class="form-control mb-2" value="${desc}" readonly>
+                <button type="button" class="btn btn-danger remover-imagem">Remover</button>
+            `;
+            document.getElementById('imagens-complementares-list').appendChild(div);
+
+            document.getElementById('imagem-complementar-url').value = '';
+            document.getElementById('imagem-complementar-desc').value = '';
+
+            div.querySelector('.remover-imagem').addEventListener('click', function() {
+                div.remove();
+            });
+        });
+    </script>
+</body>
+</html>
